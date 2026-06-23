@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Invitation</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+            background: #fffaf6;
+            color: #4a3a35;
+            text-align: center;
+            line-height: 1.9;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at top, #fff 0%, #fffaf6 45%, #f8e7e1 100%);
+        }
+
+        .label {
+            letter-spacing: 4px;
+            color: #c48b86;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-weight: normal;
+            font-size: 32px;
+            letter-spacing: 6px;
+            color: #b98278;
+            margin: 10px 0 25px;
+        }
+
+        .intro {
+            max-width: 720px;
+            margin: 0 auto 40px;
+            font-size: 16px;
+        }
+
+        .names {
+            margin: 45px auto;
+        }
+
+        .names .and {
+            color: #c48b86;
+            font-size: 20px;
+            margin: 10px 0;
+        }
+
+        .name {
+            font-size: 30px;
+            letter-spacing: 2px;
+            margin: 8px 0;
+        }
+
+        .card {
+            max-width: 680px;
+            margin: 35px auto;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid #efd1cb;
+            border-radius: 24px;
+            padding: 35px 24px;
+            box-shadow: 0 12px 30px rgba(170, 120, 110, 0.12);
+        }
+
+        h2 {
+            font-weight: normal;
+            color: #b98278;
+            letter-spacing: 4px;
+            font-size: 22px;
+            margin-bottom: 25px;
+        }
+
+        .info {
+            font-size: 17px;
+        }
+
+        .info strong {
+            color: #9d6b60;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .time-list {
+            display: inline-block;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .map-btn {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 34px;
+            border: 1px solid #c98f8f;
+            border-radius: 30px;
+            color: #9c5f5f;
+            text-decoration: none;
+            background: #fff;
+        }
+
+        .message {
+            margin-top: 35px;
+            font-size: 15px;
+        }
+
+        footer {
+            margin-top: 60px;
+            color: #b98278;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .sakura {
+            position: fixed;
+            top: -20px;
+            color: #f3a7b5;
+            animation: fall linear infinite;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.9;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 26px;
+            }
+
+            .name {
+                font-size: 24px;
+            }
+
+            .card {
+                padding: 28px 18px;
+            }
+
+            .intro {
+                font-size: 15px;
+            }
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+
+        audio {
+            margin: 24px auto 0;
+            display: block;
+            max-width: 720px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <p class="label">Wedding Invitation</p>
+
+        <h1>結婚披露宴のご案内</h1>
+
+        <p class="intro">
+            このたび 私たちは結婚することとなりました。<br>
+            日頃お世話になっている皆様へ感謝の気持ちを込めて、<br>
+            ささやかな披露宴を催したく存じます。<br>
+            ご多用中誠に恐縮ではございますが、<br>
+            ぜひご出席くださいますようお願い申し上げます。
+        </p>
+
+        <section class="hero">
+            <img src="images/anhcuoi.jpg" alt="">
+        </section>
+
+        <audio id="bgMusic" autoplay loop>
+            <source src="music/wedding.mp3" type="audio/mpeg">
+        </audio>
+
+        <div class="names">
+            <p class="name">Nguyễn Phan Huy</p>
+            <p class="and">&</p>
+            <p class="name">Lương Thị Thanh Tâm</p>
+        </div>
+
+        <section class="card">
+            <h2>日時</h2>
+
+            <div class="info">
+                <p>
+                    <strong>2026年7月4日（土）</strong>
+                </p>
+
+                <div class="time-list">
+                    <p>受付　18:30</p>
+                    <p>開宴　19:00</p>
+                    <p>お開き　22:00</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>会場</h2>
+
+            <div class="info">
+                <p>
+                    〒171-0021<br>
+                    東京都豊島区西池袋1丁目15番8号<br>
+                    三仲ビル3階
+                </p>
+
+                <a class="map-btn"
+                    href="https://www.google.com/maps/search/?api=1&query=171-0021%20東京都豊島区西池袋1丁目15番8号三仲ビル3階"
+                    target="_blank">
+                    Google Mapで見る
+                </a>
+            </div>
+        </section>
+
+        <p class="message">
+            皆様にお会いできますことを<br>
+            心より楽しみにしております。
+        </p>
+
+        <footer>
+            Nguyễn Phan Huy & Lương Thị Thanh Tâm
+        </footer>
+    </main>
+
+    <script>
+        function createSakura() {
+            const sakura = document.createElement("div");
+            sakura.className = "sakura";
+            sakura.textContent = "🌸";
+            sakura.style.left = Math.random() * 100 + "vw";
+            sakura.style.animationDuration = 6 + Math.random() * 5 + "s";
+            sakura.style.fontSize = 13 + Math.random() * 10 + "px";
+            document.body.appendChild(sakura);
+
+            setTimeout(() => {
+                sakura.remove();
+            }, 11000);
+        }
+
+        setInterval(createSakura, 700);
+    </script>
+</body>
+
+</html>

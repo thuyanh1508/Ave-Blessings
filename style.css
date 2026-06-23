@@ -1,0 +1,31 @@
+:root{
+    --bg-main: #faf7f2;
+    --bg-soft: #f5eee3;
+    --card-bg: #fffdf9;
+    --primary: #a67c52;
+    --primary-hover: #8a6844;
+    --accent: #dcc5a1;
+    --text-main: #3e3428;
+    --text-secondary: #7a6d5a;
+    --border: #e8ded1;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 74px;
+    padding: 0 64px;
+    background: rgba(255,253, 249, 0.95);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+}
