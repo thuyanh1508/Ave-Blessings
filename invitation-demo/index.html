@@ -203,7 +203,8 @@
         <audio id="bgMusic" loop>
             <source src="music/wedding.mp3" type="audio/mpeg">
         </audio>
-        <button class="music-btn" onclick="document.getElementById('bgMusic').play()">
+
+        <button class="music-btn" onclick="toggleMusic()">
             ♫
         </button>
 
@@ -273,6 +274,16 @@
         }
 
         setInterval(createSakura, 700);
+
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
     </script>
 </body>
 
