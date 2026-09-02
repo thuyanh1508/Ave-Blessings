@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giỏ hàng - Ave Blessings</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">Ave Blessings</div>
+  <nav class="nav">
+    <a href="index.html">ホーム</a>
+    <a href="products.html">すべての商品</a>
+    <a href="products.html?category=invitation">結婚式</a>
+    <a href="products.html?category=card">カード</a>
+    <a href="products.html?category=video">動画ギフト</a>
+    <a href="cart.html">カート</a>
+  </nav>
+</header>
+
+<main class="page-shell">
+  <div class="page-header">
+    <div>
+      <p class="hero-label">Shopping basket</p>
+      <h1>Giỏ hàng</h1>
+    </div>
+    <a href="products.html" class="btn-secondary">Tiếp tục mua sắm</a>
+  </div>
+
+  <div class="cart-layout">
+    <section class="section-card cart-section">
+      <div id="cartItems" class="cart-items"></div>
+    </section>
+
+    <aside class="section-card summary-card">
+      <h3>Thông tin thanh toán</h3>
+      <div class="summary-list">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <strong id="subtotal">¥0</strong>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span id="shipping">¥0</span>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <span id="total">¥0</span>
+        </div>
+      </div>
+      <a href="checkout.html" class="btn-primary full-width">Tiến hành thanh toán</a>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>Ave Blessings. 電子カードとお祝い動画の販売サイト。</p>
+</footer>
+
+<script type="module" src="cart.js"></script>
+</body>
+</html>
