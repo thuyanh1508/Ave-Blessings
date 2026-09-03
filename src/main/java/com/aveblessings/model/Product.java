@@ -18,7 +18,8 @@ public class Product {
         this.category = category;
     }
 
-    // Getter: cho phép truy cập các thuộc tính của sản phẩm, cho phep ben ngoai doc data product    public int getId() {
+    // Getter: cho phép truy cập các thuộc tính của sản phẩm, cho phep ben ngoai doc data product
+    public int getId() {
         return id;
     }
 
