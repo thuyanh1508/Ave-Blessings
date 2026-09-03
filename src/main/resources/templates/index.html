@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ave Blessings</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">Ave Blessings</div>
+
+  <nav class="nav">
+    <a th:href="@{/}">ホーム</a>
+    <a th:href="@{/products}">すべての商品</a>
+    <a href="#">誕生日</a>
+    <a href="#">結婚式</a>
+    <a href="#">動画ギフト</a>
+    <a th:href="@{/cart}">カート</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <p class="hero-label">電子カード・お祝い動画サービス</p>
+  <h1>大切な想いを、<br>特別なメッセージに。</h1>
+  <p class="hero-text">
+    Ave Blessingsは、誕生日、結婚式、記念日、告白などの特別な日に、
+    心を込めた電子カードやお祝い動画を届けるサービスです。
+  </p>
+  <div class="hero-buttons">
+    <a href="products.html" class="btn-primary">テンプレートを見る</a>
+    <a href="#" class="btn-secondary">サービスについて</a>
+  </div>
+</section>
+
+<section class="category-section">
+  <h2>カテゴリから探す</h2>
+
+  <div class="category-list">
+    <a href="products.html?category=card" class="category-card">誕生日カード</a>
+    <a href="products.html?category=invitation" class="category-card">結婚式招待状</a>
+    <a href="products.html?category=card" class="category-card">お祝いカード</a>
+    <a href="products.html?category=invitation" class="category-card">イベント招待状</a>
+    <a href="products.html?category=video" class="category-card">告白動画</a>
+    <a href="products.html?category=video" class="category-card">お祝い動画</a>
+  </div>
+</section>
+
+<section class="filter-section">
+  <input type="text" placeholder="テンプレートを検索..." />
+
+  <select>
+    <option>すべてのカテゴリ</option>
+    <option>誕生日カード</option>
+    <option>結婚式招待状</option>
+    <option>お祝い動画</option>
+  </select>
+
+  <select>
+    <option>価格</option>
+    <option>1,000円未満</option>
+    <option>1,000円〜3,000円</option>
+  </select>
+</section>
+
+<main class="product-section">
+  <div class="section-title">
+    <h2>人気テンプレート</h2>
+    <a href="products.html">すべて見る</a>
+  </div>
+
+  <div style="text-align: center; padding: 60px 20px; color: var(--text-secondary);">
+    <p>すべての商品は<a href="products.html" style="color: var(--primary); text-decoration: none; font-weight: bold;">商品ページ</a>でご覧いただけます。</p>
+  </div>
+</main>
+
+<section class="concept-section">
+  <div>
+    <p class="hero-label">Ave Blessingsの想い</p>
+    <h2>一つひとつの言葉に、祝福を込めて。</h2>
+    <p>
+      Ave Blessingsは、ただ商品を販売するだけではなく、
+      人と人をつなぐ「想い」や「感謝」を大切にするサービスを目指しています。
+    </p>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Ave Blessings. 電子カードとお祝い動画の販売サイト。</p>
+</footer>
+
+</body>
+</html>

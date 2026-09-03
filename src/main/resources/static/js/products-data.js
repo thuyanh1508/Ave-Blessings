@@ -7,7 +7,7 @@ export const products = [
     category: 'invitation',
     tag: 'Wedding Demo',
     image: 'Wedding #01',
-    demolink: '/demo/wedding-01/index.html',
+    link: 'templates/wedding-01/index.html',
     rating: 5,
     reviews: 128,
     fullDescription:
@@ -46,7 +46,7 @@ export const products = [
     category: 'invitation',
     tag: '招待状',
     image: 'Wedding',
-    demolink: '/demo/wedding-01/index.html',
+    link: 'templates/wedding-01/index.html',
     rating: 5,
     reviews: 96,
     fullDescription:
@@ -142,7 +142,7 @@ export const products = [
     category: 'invitation',
     tag: '招待状',
     image: 'Wedding Premium',
-    demolink: '/demo/wedding-01/index.html',
+    link: 'templates/wedding-01/index.html',
     rating: 5,
     reviews: 110,
     fullDescription:
