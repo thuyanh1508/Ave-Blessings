@@ -13,7 +13,7 @@ function renderProducts(filteredProducts) {
 
   noResults.classList.add('hidden');
   grid.innerHTML = filteredProducts.map(product => {
-    const targetLink = product.link ? product.link : `product-detail.html?id=${product.id}`;
+    const targetLink = product.link ? product.link : `/products/${product.id}`;
 
     return `
       <div class="product-card" data-id="${product.id}" data-link="${targetLink}">
@@ -58,14 +58,14 @@ function filterProducts() {
 }
 
 function goToDetail(productId) {
-  window.location.href = `product-detail.html?id=${productId}`;
+  window.location.href = `/products/${productId}`;
 }
 
 function attachProductCardEvents() {
   const cards = document.querySelectorAll('.product-card');
   cards.forEach(card => {
     const productId = card.dataset.id;
-    const productLink = card.dataset.link || `product-detail.html?id=${productId}`;
+    const productLink = card.dataset.link || `/products/${productId}`;
 
     card.addEventListener('click', () => {
       window.location.href = productLink;

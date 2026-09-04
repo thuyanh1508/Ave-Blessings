@@ -109,7 +109,7 @@ function initDetailPage() {
   document.querySelectorAll('.related-card').forEach(card => {
     card.addEventListener('click', () => {
       const id = card.dataset.id;
-      window.location.href = `product-detail.html?id=${id}`;
+      window.location.href = `/products/${id}`;
     });
   });
 }

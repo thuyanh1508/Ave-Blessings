@@ -1,36 +1,9 @@
-import { products } from './products-data.js';
-import { formatCurrency } from './site.js';
-
-function renderProducts(filteredProducts) {
-  const grid = document.getElementById('productGrid');
-  const noResults = document.getElementById('noResults');
-
-  if (filteredProducts.length === 0) {
-    grid.innerHTML = '';
-    noResults.classList.remove('hidden');
-    return;
-  }
-
-  noResults.classList.add('hidden');
-  grid.innerHTML = filteredProducts.map(product => {
-    const targetLink = `/products/${product.id}`;
-    return `
-      <div class="product-card" data-id="${product.id}" data-link="${targetLink}">
-        <div class="product-image">${product.image}</div>
-        <div class="product-info">
-          <span class="tag">${product.tag}</span>
-          <h3>${product.name}</h3>
-          <p>${product.description}</p>
-          <div class="product-footer">
-            <div class="price">${formatCurrency(product.price)}</div>
-            <a href="${targetLink}" class="btn-detail" data-link="${targetLink}">詳細を見る</a>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  attachProductCardEvents();
+function matchesPrice(price, priceRange) {
+  if (!priceRange) return true;
+  if (priceRange === '0-1000') return price < 1000;
+  if (priceRange === '1000-3000') return price >= 1000 && price <= 3000;
+  if (priceRange === '3000') return price >= 3000;
+  return true;
 }
 
 function filterProducts() {
@@ -38,52 +11,55 @@ function filterProducts() {
   const category = document.getElementById('categoryFilter').value;
   const priceRange = document.getElementById('priceFilter').value;
 
-  const filtered = products.filter(product => {
-    const matchSearch = product.name.toLowerCase().includes(searchTerm) ||
-      product.description.toLowerCase().includes(searchTerm);
-    const matchCategory = !category || product.category === category;
+  const cards = document.querySelectorAll('.product-card');
+  let anyVisible = false;
+  cards.forEach(card => {
+    const name = (card.querySelector('h3') && card.querySelector('h3').textContent || '').toLowerCase();
+    const desc = (card.querySelector('p') && card.querySelector('p').textContent || '').toLowerCase();
+    const tag = (card.querySelector('.tag') && card.querySelector('.tag').textContent || '').toLowerCase();
+    const priceText = (card.querySelector('.price') && card.querySelector('.price').textContent || '0');
+    const price = parseInt(priceText.replace(/[^0-9]/g, ''), 10) || 0;
 
-    let matchPrice = true;
-    if (priceRange) {
-      if (priceRange === '0-1000') matchPrice = product.price < 1000;
-      else if (priceRange === '1000-3000') matchPrice = product.price >= 1000 && product.price <= 3000;
-      else if (priceRange === '3000') matchPrice = product.price >= 3000;
-    }
+    const matchSearch = name.includes(searchTerm) || desc.includes(searchTerm) || tag.includes(searchTerm);
+    const matchCategory = !category || (card.getAttribute('data-category') === category) || (card.getAttribute('data-category') == null && true);
+    const matchPrice = matchesPrice(price, priceRange);
 
-    return matchSearch && matchCategory && matchPrice;
+    const show = matchSearch && matchCategory && matchPrice;
+    card.style.display = show ? '' : 'none';
+    if (show) anyVisible = true;
   });
 
-  renderProducts(filtered);
-}
-
-function goToDetail(productId) {
-  window.location.href = `/products/${productId}`;
+  const noResults = document.getElementById('noResults');
+  if (noResults) {
+    if (!anyVisible) noResults.classList.remove('hidden');
+    else noResults.classList.add('hidden');
+  }
 }
 
 function attachProductCardEvents() {
   const cards = document.querySelectorAll('.product-card');
   cards.forEach(card => {
-    const productId = card.dataset.id;
-    const productLink = card.dataset.link || `/products/${productId}`;
-
-    card.addEventListener('click', () => {
-      window.location.href = productLink;
-    });
-
-    const button = card.querySelector('.btn-detail');
-    if (button) {
-      button.addEventListener('click', event => {
-        event.stopPropagation();
-      });
+    const link = card.querySelector('.btn-detail');
+    if (link) {
+      link.addEventListener('click', (e) => { e.stopPropagation(); });
     }
+    card.addEventListener('click', () => {
+      const a = card.querySelector('.btn-detail');
+      if (a && a.href) window.location.href = a.href;
+    });
   });
 }
 
 function initProductPage() {
-  document.getElementById('searchInput').addEventListener('input', filterProducts);
-  document.getElementById('categoryFilter').addEventListener('change', filterProducts);
-  document.getElementById('priceFilter').addEventListener('change', filterProducts);
-  renderProducts(products);
+  const searchInput = document.getElementById('searchInput');
+  const categoryFilter = document.getElementById('categoryFilter');
+  const priceFilter = document.getElementById('priceFilter');
+
+  if (searchInput) searchInput.addEventListener('input', filterProducts);
+  if (categoryFilter) categoryFilter.addEventListener('change', filterProducts);
+  if (priceFilter) priceFilter.addEventListener('change', filterProducts);
+
+  attachProductCardEvents();
 }
 
 window.addEventListener('DOMContentLoaded', initProductPage);

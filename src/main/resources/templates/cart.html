@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>カート - Ave Blessings</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">Ave Blessings</div>
+  <nav class="nav">
+    <a th:href="@{/}">ホーム</a>
+    <a th:href="@{/products}">すべての商品</a>
+    <a th:href="@{/products(category='card')}">誕生日</a>
+    <a th:href="@{/products(category='invitation')}">結婚式</a>
+    <a th:href="@{/products(category='video')}">動画ギフト</a>
+    <a th:href="@{/cart}">カート</a>
+  </nav>
+</header>
+
+<main class="page-shell">
+  <div class="page-header">
+    <div>
+      <p class="hero-label">カート</p>
+      <h1>カート</h1>
+    </div>
+  </div>
+
+  <div class="cart-layout">
+    <section class="section-card cart-section">
+      <div id="cartItems" class="cart-items">
+        <div th:if="${message}" class="flash-message" th:text="${message}"></div>
+
+        <div th:if="${#lists.isEmpty(cartItems)}">
+          <p>カートは空です。</p>
+        </div>
+
+        <div th:each="item : ${cartItems}" class="cart-row">
+          <div class="cart-row-left">
+            <div class="cart-item-name" th:text="${item.product.name}">商品名</div>
+            <div class="cart-item-price" th:text="${item.product.price + '円'}">価格</div>
+          </div>
+
+          <div class="cart-row-right">
+            <div class="cart-item-quantity">数量: <span th:text="${item.quantity}">1</span></div>
+            <div class="cart-item-subtotal">小計: <span th:text="${item.subtotal + '円'}">0円</span></div>
+            <form th:action="@{/cart/remove}" method="post" style="display:inline;">
+              <input type="hidden" name="id" th:value="${item.product.id}" />
+              <button class="btn-link" type="submit">削除</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="section-card summary-card">
+      <h3>注文の合計</h3>
+      <div class="summary-list">
+        <div class="summary-row">
+          <span>小計</span>
+          <strong id="subtotal" th:text="${cartTotal + '円'}">¥0</strong>
+        </div>
+        <div class="summary-row">
+          <span>送料</span>
+          <span id="shipping">¥0</span>
+        </div>
+        <div class="summary-row total-row">
+          <span>合計</span>
+          <span id="total" th:text="${cartTotal + '円'}">¥0</span>
+        </div>
+      </div>
+      <a th:href="@{/checkout}" class="btn-primary full-width">レジに進む</a>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>Ave Blessings. 電子カードとお祝い動画の販売サイト。</p>
+</footer>
+
+<script th:src="@{/js/site.js}"></script>
+<script th:src="@{/js/cart.js}"></script>
+</body>
+</html>

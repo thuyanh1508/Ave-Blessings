@@ -1,5 +1,3 @@
-import { products } from './products-data.js';
-
 export const CART_STORAGE_KEY = 'aveBlessingsCart';
 
 export function formatCurrency(value) {
@@ -76,20 +74,13 @@ export function seedDemoCart() {
 export function getCartItemsWithProductData() {
   const cart = seedDemoCart();
 
-  return cart
-    .map(item => {
-      const product = products.find(entry => entry.id === Number(item.id));
-      if (!product) {
-        return null;
-      }
-
-      return {
-        ...product,
-        quantity: item.quantity,
-        lineTotal: product.price * item.quantity
-      };
-    })
-    .filter(Boolean);
+  // No client-side product catalogue available in this migration step.
+  // Return cart items with minimal fields; server-side rendering will enrich where needed.
+  return cart.map(item => ({
+    id: Number(item.id),
+    quantity: item.quantity,
+    lineTotal: 0
+  }));
 }
 
 export function getCartSummary() {

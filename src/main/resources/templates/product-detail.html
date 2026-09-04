@@ -1,50 +1,123 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>商品詳細 - Ave Blessings</title>
+
   <link rel="stylesheet" th:href="@{/css/style.css}" />
   <link rel="stylesheet" th:href="@{/css/product-detail.css}" />
 </head>
+
 <body>
 
-<header class="header">
-  <div class="logo">Ave Blessings</div>
-  <nav class="nav">
-    <a th:href="@{/}">ホーム</a>
-    <a th:href="@{/products}">すべての商品</a>
-    <a href="#">誕生日</a>
-    <a href="#">結婚式</a>
-    <a href="#">動画ギフト</a>
-    <a href="cart.html">カート</a>
-  </nav>
-</header>
+  <header class="header">
+    <div class="logo">Ave Blessings</div>
 
-<div class="detail-container">
-  <div class="breadcrumb">
-    <a th:href="@{/}">ホーム</a> /
-    <a th:href="@{/products} ">すべての商品</a> /
-    <span id="breadcrumbTitle">商品詳細</span>
+    <nav class="nav">
+      <a th:href="@{/}">ホーム</a>
+      <a th:href="@{/products}">すべての商品</a>
+      <a th:href="@{/products(category='card')}">誕生日</a>
+      <a th:href="@{/products(category='invitation')}">結婚式</a>
+      <a th:href="@{/products(category='video')}">動画ギフト</a>
+      <a th:href="@{/cart}">カート</a>
+    </nav>
+  </header>
+
+  <div class="detail-container">
+
+    <div class="breadcrumb">
+      <a th:href="@{/}">ホーム</a> /
+      <a th:href="@{/products}">すべての商品</a> /
+      <span th:text="${product.name}">商品詳細</span>
+    </div>
+
+    <div id="detailContent">
+
+      <div class="detail-content">
+
+        <div class="detail-image">
+          <span th:text="${product.name}">商品画像</span>
+        </div>
+
+        <div class="detail-info">
+
+          <span class="detail-tag"
+                th:text="${product.category}">
+            category
+          </span>
+
+          <h1 th:text="${product.name}">
+            商品名
+          </h1>
+
+          <div class="detail-price"
+               th:text="${product.price + '円'}">
+            0円
+          </div>
+
+          <div class="detail-description"
+               th:text="${product.description}">
+            商品説明
+          </div>
+
+            <div class="product-features" th:if="${product.features}">
+              <h3>このテンプレートの特徴</h3>
+              <ul>
+                <li th:each="f : ${product.features}" th:text="${f}">特徴</li>
+              </ul>
+            </div>
+
+            <div class="detail-rating" th:if="${product.rating}">
+              <span th:text="${product.rating}">0</span>
+              <span th:text="${' (' + product.reviews + '件のレビュー)'}">(0件のレビュー)</span>
+            </div>
+
+          <div class="actions">
+            <div class="actions">
+              <div th:if="${product.link == null}">
+                <form th:action="@{/cart/add}" method="post" class="add-to-cart-form">
+                  <input type="hidden" name="id" th:value="${product.id}" />
+                  <label>
+                    数量
+                    <input type="number" name="quantity" value="1" min="1" class="qty-input" />
+                  </label>
+                  <button class="btn-primary" type="submit">カートに追加</button>
+                </form>
+              </div>
+              <a th:if="${product.link != null}" th:href="${product.link}" class="btn-primary">テンプレートを見る</a>
+              <a th:href="@{/products}" class="btn-secondary">戻る</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <div id="detailContent">
-    <!-- 商品詳細はJavaScriptで動的に生成されます -->
-  </div>
-
-  <div id="notFound" class="hidden">
-    <div class="not-found">
-      <h1>申し訳ございません</h1>
-      <p>ご指定の商品が見つかりません。</p>
-      <a th:href="@{/products}">商品一覧に戻る</a>
+  <div class="related-section" th:if="${related}">
+    <h2>関連商品</h2>
+    <div class="related-products">
+      <div th:each="r : ${related}" class="related-card">
+        <div class="related-image" th:text="${r.image}">image</div>
+        <div class="related-info">
+          <h4 th:text="${r.name}">name</h4>
+          <div class="related-price" th:text="${r.price + '円'}">price</div>
+          <a th:href="@{/products/{id}(id=${r.id})}">詳細を見る</a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<footer class="footer">
-  <p>Ave Blessings. 電子カードとお祝い動画の販売サイト。</p>
-</footer>
+  <footer class="footer">
+    <p>Ave Blessings. 電子カードとWeb招待状の販売サイト。</p>
+  </footer>
 
-<script type="module" th:src="@{/js/product-detail.js}"></script>
+<script th:src="@{/js/product-detail.js}"></script>
 </body>
+
 </html>

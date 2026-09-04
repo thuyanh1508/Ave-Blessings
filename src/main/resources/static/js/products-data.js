@@ -1,8 +1,8 @@
 export const products = [
   {
     id: 1,
-    name: 'Wedding Web Invitation #01',
-    description: 'Sáng tạo, lãng mạn và đầy cảm xúc với thiết kế thiệp cưới web theo phong cách Nhật Bản.',
+    name: '結婚式ウェブ招待状 #01',
+    description: '日本風のデザインを取り入れた、創造的でロマンチックな結婚式用のウェブ招待状です。',
     price: 1800,
     category: 'invitation',
     tag: 'Wedding Demo',
@@ -11,12 +11,12 @@ export const products = [
     rating: 5,
     reviews: 128,
     fullDescription:
-      'Thiệp cưới web Wedding #01 là mẫu demo đầu tiên của Ave Blessings. Thiết kế tối giản, tinh tế với tông màu hồng pastel và các block thông tin lễ cưới, giúp bạn chào đón khách mời theo phong cách sang trọng nhưng rất ấm áp.',
+      '結婚式ウェブ招待状 #01 は Ave Blessings のデモテンプレートです。シンプルで上品な配色と、披露宴の日時・会場案内などの情報ブロックを備え、ゲストを温かく迎えるデザインになっています。',
     features: [
-      'Giao diện cưới theo phong cách Nhật Bản, thanh lịch và ấm áp',
-      'Tích hợp ảnh cưới, thời gian sự kiện và thông tin địa điểm',
-      'Dễ chỉnh sửa tên cô dâu, chú rể, lời chúc và ngày cưới',
-      'Tương thích trên điện thoại và máy tính bảng'
+      '和風の上品で温かいデザイン',
+      '写真・日時・会場情報を組み込めるレイアウト',
+      '名前やメッセージの簡単編集が可能',
+      'スマートフォンでも美しく表示されます'
     ]
   },
   {
@@ -52,10 +52,10 @@ export const products = [
     fullDescription:
       '結婚式やパーティーに使える、上品なデジタル招待状です。親族や友人に、特別な一日を共有するための演出を整えます。',
     features: [
-      'Filler content for demo product',
-      'Elegant reservation card style',
-      'Custom messaging and gallery support',
-      'Ready for web and mobile display'
+      'デモ用の説明テキスト',
+      '上品な招待状スタイル',
+      'カスタムメッセージとギャラリー対応',
+      'ウェブ・モバイル表示に最適化'
     ]
   },
   {

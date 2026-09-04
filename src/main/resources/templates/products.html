@@ -15,9 +15,9 @@
   <nav class="nav">
     <a th:href="@{/}">ホーム</a>
     <a th:href="@{/products}">すべての商品</a>
-    <a href="#">誕生日</a>
-    <a href="#">結婚式</a>
-    <a href="#">動画ギフト</a>
+    <a th:href="@{/products(category='card')}">誕生日</a>
+    <a th:href="@{/products(category='invitation')}">結婚式</a>
+    <a th:href="@{/products(category='video')}">動画ギフト</a>
     <a th:href="@{/cart}">カート</a>
   </nav>
 </header>
@@ -28,10 +28,10 @@
     <div class="filter-group">
       <input type="text" id="searchInput" placeholder="テンプレートを検索..." />
       <select id="categoryFilter">
-        <option value="">すべてのカテゴリ</option>
-        <option value="card">電子カード</option>
-        <option value="invitation">招待状</option>
-        <option value="video">動画ギフト</option>
+        <option value="" th:selected="${selectedCategory == ''}">すべてのカテゴリ</option>
+        <option value="card" th:selected="${selectedCategory == 'card'}">電子カード</option>
+        <option value="invitation" th:selected="${selectedCategory == 'invitation'}">招待状</option>
+        <option value="video" th:selected="${selectedCategory == 'video'}">動画ギフト</option>
       </select>
       <select id="priceFilter">
         <option value="">価格</option>
@@ -43,7 +43,18 @@
   </div>
 
   <div class="product-grid" id="productGrid">
-    <!-- 商品はJavaScriptで動的に生成されます -->
+    <div th:each="p : ${products}" class="product-card" th:attr="data-id=${p.id},data-category=${p.category}">
+      <div class="product-image" th:text="${p.image}">image</div>
+      <div class="product-info">
+        <span class="tag" th:text="${p.tag}">tag</span>
+        <h3 th:text="${p.name}">name</h3>
+        <p th:text="${p.description}">description</p>
+        <div class="product-footer">
+          <div class="price" th:text="${p.price + '円'}">0円</div>
+          <a th:href="@{/products/{id}(id=${p.id})}" class="btn-detail">詳細を見る</a>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="no-results hidden" id="noResults">
@@ -55,6 +66,6 @@
   <p>Ave Blessings. 電子カードとお祝い動画の販売サイト。</p>
 </footer>
 
-<script type="module" th:src="@{/js/products.js}"></script>
+<script th:src="@{/js/products.js}"></script>
 </body>
 </html>

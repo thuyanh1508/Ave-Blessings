@@ -46,6 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     alert('Đặt hàng thành công! Demo đơn hàng đã được ghi nhận.');
     localStorage.removeItem('aveBlessingsCart');
-    window.location.href = 'products.html';
+    window.location.href = '/products';
   });
 });
